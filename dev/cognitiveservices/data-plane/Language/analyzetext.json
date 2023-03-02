@@ -1601,7 +1601,7 @@
     },
     "EntityOverlapPolicy": {
       "description": "(Optional) describes the PII categories to return",
-      "default": "allowOverlap",
+      "default": "matchLongest",
       "items": {
         "type": "string",
         "x-ms-enum": {
