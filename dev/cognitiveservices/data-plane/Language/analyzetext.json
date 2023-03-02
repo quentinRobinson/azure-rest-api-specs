@@ -1493,12 +1493,144 @@
       },
       "description": "Represents the confidence scores across all sentiment classes: positive and negative."
     },
+    "EntityIncludeList": {
+      "description": "(Optional) describes the Entity categories to include in the result",
+      "default": "All",
+      "items": {
+        "type": "string",
+        "x-ms-enum": {
+          "name": "IncludeList",
+          "modelAsString": true
+        },
+        "enum": [
+          "Person",
+          "PersonType",
+          "Location",
+          "Location.GPE",
+          "Location.Structural",
+          "Location.Geographical",
+          "Organization",
+          "Organization.Medical",
+          "Organization.Stock_Exchange",
+          "Organization.Sports",
+          "Event",
+          "Event.Cultural",
+          "Event.Natural",
+          "Event.Sports",
+          "Product",
+          "Product.Computing",
+          "Skill",
+          "Address",
+          "PhoneNumber",
+          "Email",
+          "URL",
+          "IP",
+          "DateTime",
+          "DateTime.Date",
+          "DateTime.Time",
+          "DateTime.DateRange",
+          "DateTime.TimeRange",
+          "DateTime.Duration",
+          "DateTime.Set",
+          "Quantity",
+          "Quantity.Number",
+          "Quantity.Percentage",
+          "Quantity.Ordinal",
+          "Quantity.Age",
+          "Quantity.Currency",
+          "Quantity.Dimensions",
+          "Quantity.Temperature",
+          "All"
+        ]
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "EntityExcludeList": {
+      "description": "(Optional) describes the Entity categories to exclude from the result",
+      "default": "None",
+      "items": {
+        "type": "string",
+        "x-ms-enum": {
+          "name": "ExcludeList",
+          "modelAsString": true
+        },
+        "enum": [
+          "Person",
+          "PersonType",
+          "Location",
+          "Location.GPE",
+          "Location.Structural",
+          "Location.Geographical",
+          "Organization",
+          "Organization.Medical",
+          "Organization.Stock_Exchange",
+          "Organization.Sports",
+          "Event",
+          "Event.Cultural",
+          "Event.Natural",
+          "Event.Sports",
+          "Product",
+          "Product.Computing",
+          "Skill",
+          "Address",
+          "PhoneNumber",
+          "Email",
+          "URL",
+          "IP",
+          "DateTime",
+          "DateTime.Date",
+          "DateTime.Time",
+          "DateTime.DateRange",
+          "DateTime.TimeRange",
+          "DateTime.Duration",
+          "DateTime.Set",
+          "Quantity",
+          "Quantity.Number",
+          "Quantity.Percentage",
+          "Quantity.Ordinal",
+          "Quantity.Age",
+          "Quantity.Currency",
+          "Quantity.Dimensions",
+          "Quantity.Temperature",
+          "None"
+        ]
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "EntityOverlapPolicy": {
+      "description": "(Optional) describes the PII categories to return",
+      "default": "allowOverlap",
+      "items": {
+        "type": "string",
+        "x-ms-enum": {
+          "name": "OverlapPolicy",
+          "modelAsString": true
+        },
+        "enum": [
+          "matchLongest",
+          "allowOverlap"
+        ]
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
     "EntitiesTaskParameters": {
       "type": "object",
       "description": "Supported parameters for an Entity Recognition task.",
       "properties": {
         "stringIndexType": {
           "$ref": "common.json#/definitions/StringIndexType"
+        },
+        "includeList": {
+          "$ref": "#/definitions/EntityIncludeList"
+        },
+        "excludeList": {
+          "$ref": "#/definitions/EntityExcludeList"
+        },
+        "overlapPolicy": {
+          "$ref": "#/definitions/EntityOverlapPolicy"
         }
       },
       "allOf": [
