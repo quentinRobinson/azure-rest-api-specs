@@ -49,9 +49,17 @@ enum Versions {
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   v2023_04_15_preview: "2023-04-15-preview",
 
-  @doc("Version 2023-04-15-preview")
+  @doc("Version 2023-11-15-preview")
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   v2023_11_15_preview: "2023-11-15-preview",
+
+  @doc("Version 2024-05-01")
+  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  v2024_05_01: "2024-05-01",
+
+  @doc("Version 2024-05-15-preview")
+  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  2024-05-15-preview: "2024-05-15-preview",
 }
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Model types must use PascalCase"
@@ -648,6 +656,7 @@ enum AnalyzeConversationLROTaskKind {
   @doc("Custom Conversational Summarization Task")
   CustomConversationalSummarizationTask,
 
+  @remove(Versions.v2024-05-01)
   @added(Versions.v2023_04_15_preview)
   @doc("Conversational Sentiment Task")
   ConversationalSentimentTask,
