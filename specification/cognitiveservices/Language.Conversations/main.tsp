@@ -59,7 +59,7 @@ enum Versions {
 
   @doc("Version 2024-05-15-preview")
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
-  2024-05-15-preview: "2024-05-15-preview",
+  v2024-05-15-preview: "2024-05-15-preview",
 }
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Model types must use PascalCase"
@@ -550,7 +550,7 @@ model OrdinalResolution extends BaseResolution {
   @doc("A resolution for ordinal numbers entity instances.")
   resolutionKind: ResolutionKind.OrdinalResolution;
 
-  @doc("The offset With respect to the reference (e.g., offset = -1 in \"show me the second to last\"")
+  @doc("The offset With respect to the reference (e.g., offset = -1 in \"show me the second to last\")")
   offset: string;
 
   @doc("The reference point that the ordinal number denotes.")
@@ -1169,6 +1169,8 @@ enum SummaryAspect {
   @doc("A concise one-paragraph summary to provide a quick overview.")
   recap,
 
+  @added(Versions.v2024-05-15-preview)
+  @removed(Versions.v2024_05_01)
   @added(Versions.v2023_11_15_preview)
   @doc("Action items and tasks that arose during a meeting. ")
   `follow-up tasks`,
