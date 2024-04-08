@@ -652,6 +652,8 @@ enum AnalyzeConversationLROTaskKind {
   @doc("Conversational PII Task")
   ConversationalPiiTask,
 
+  @added(Versions.v2024-05-15-preview)
+  @removed(Versions.v2024_05_01)
   @added(Versions.v2023_04_15_preview)
   @doc("Custom Conversational Summarization Task")
   CustomConversationalSummarizationTask,
@@ -673,10 +675,13 @@ enum AnalyzeConversationResultsKind {
   @doc("Conversational PII Results")
   ConversationalPiiResults,
 
+  @added(Versions.v2024-05-15-preview)
+  @removed(Versions.v2024_05_01)
   @added(Versions.v2023_04_15_preview)
   @doc("Custom Conversational Summarization Results")
   CustomConversationalSummarizationResults,
 
+  @removed(Versions.v2024-05-01)
   @added(Versions.v2023_04_15_preview)
   @doc("Conversational Sentiment Results")
   ConversationalSentimentResults,
