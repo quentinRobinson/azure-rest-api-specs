@@ -1114,8 +1114,10 @@ enum TranscriptContentType {
   text,
 }
 
-@doc("Task definition for custom conversational summarization.")
+@added(Versions.v2024-05-15-preview)
+@removed(Versions.v2024_05_01)
 @added(Versions.v2023_04_15_preview)
+@doc("Task definition for custom conversational summarization.")
 model AnalyzeCustomConversationSummarizationTask
   extends AnalyzeConversationLROTask {
   @doc("discriminator kind")
@@ -1149,8 +1151,10 @@ model ConversationSummarizationTaskParameters is PreBuiltTaskParameters {
   ...ConversationSummarizationTaskParametersBase;
 }
 
-@doc("Supported parameters for a custom conversation summarization task.")
+@added(Versions.v2024_05_15_preview)
+@removed(Versions.v2024_05_01)
 @added(Versions.v2023_04_15_preview)
+@doc("Supported parameters for a custom conversation summarization task.")
 model CustomConversationSummarizationTaskParameters is CustomTaskParameters {
   ...ConversationSummarizationTaskParametersBase;
 }
@@ -1192,8 +1196,10 @@ model AnalyzeConversationSummarizationResult
   results: SummaryResult;
 }
 
-@doc("Result for the custom summarization task on the conversation.")
+@added(Versions.v2024_05_15_preview)
+@removed(Versions.v2024_05_01)
 @added(Versions.v2023_04_15_preview)
+@doc("Result for the custom summarization task on the conversation.")
 model AnalyzeCustomConversationSummarizationResult
   extends AnalyzeConversationJobResult {
   @doc("discriminator kind")
@@ -1217,6 +1223,8 @@ model SummaryResult {
   ...PreBuiltResult;
 }
 
+@added(Versions.v2024_05_15_preview)
+@removed(Versions.v2024_05_01)
 @added(Versions.v2023_04_15_preview)
 @doc("Custom Summary Results")
 model CustomSummaryResult {
