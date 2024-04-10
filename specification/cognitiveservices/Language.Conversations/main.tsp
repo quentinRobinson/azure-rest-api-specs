@@ -665,7 +665,7 @@ union AnalyzeConversationLROTaskKind {
   @doc("Custom Conversational Summarization Task")
   CustomConversationalSummarizationTask: "CustomConversationalSummarizationTask",
 
-  @remove(Versions.v2024-05-01)
+  @removed(Versions.v2024-05-01)
   @added(Versions.v2023_04_15_preview)
   @doc("Conversational Sentiment Task")
   ConversationalSentimentTask: "ConversationalSentimentTask",
