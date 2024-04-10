@@ -59,7 +59,7 @@ enum Versions {
 
   @doc("Version 2024-05-15-preview")
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
-  v2024-05-15-preview: "2024-05-15-preview",
+  v2024_05_15_preview: "2024-05-15-preview"
 }
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Model types must use PascalCase"
@@ -371,6 +371,10 @@ model EntitySubtype extends BaseExtraInformation {
 
   @doc("The Subtype of an extracted entity type.")
   value?: string;
+
+  @doc("List of entity tags. Tags express similarities between entity categories for the extracted entity type.")
+  @added(Versions.v2024_05_15_preview)
+  tags?: Array<EntityTag>;
 }
 
 @doc("The list key extra data kind.")
@@ -393,6 +397,16 @@ model RegexKey extends BaseExtraInformation {
 
   @doc("The .NET regex pattern used in extracting the entity. Please visit https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions for more information about .NET regular expressions.")
   regexPattern?: string;
+}
+
+@doc("Tags express similarities between entity categories for the extracted entity type.")
+@added(Versions.v2024_05_15_preview)
+model EntityTag {
+  @doc("The name of the tag.")
+  name: string;
+
+  @doc("The confidence score of the tag for the extracted entity between 0.0 and 1.0.")
+  confidenceScore?: float64;
 }
 
 @doc("The abstract base class for entity resolutions.")
