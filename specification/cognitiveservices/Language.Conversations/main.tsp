@@ -3,7 +3,6 @@ import "@typespec/http";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-client-generator-core";
-// import "@azure-tools/typespec-autorest"; examples are not working with autorest https://github.com/Azure/autorest.csharp/issues/4495
 import "./common.tsp";
 
 using TypeSpec.Http;
@@ -12,7 +11,6 @@ using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.Core.Traits;
 using Azure.ClientGenerator.Core;
-// using Autorest;
 
 @useAuth(
   TypeSpec.Http.ApiKeyAuth<
@@ -569,7 +567,7 @@ model OrdinalResolution extends BaseResolution {
   @doc("A resolution for ordinal numbers entity instances.")
   resolutionKind: ResolutionKind.OrdinalResolution;
 
-  @doc("The offset With respect to the reference (e.g., offset = -1 in \"show me the second to last\")")
+  @doc("The offset With respect to the reference (e.g., offset = -1 in \"show me the second to last\"")
   offset: string;
 
   @doc("The reference point that the ordinal number denotes.")
@@ -673,13 +671,13 @@ union AnalyzeConversationLROTaskKind {
   @doc("Conversational PII Task")
   ConversationalPIITask: "ConversationalPIITask",
 
-  @added(Versions.v2024-05-15-preview)
+  @added(Versions.v2024_05_15_preview)
   @removed(Versions.v2024_05_01)
   @added(Versions.v2023_04_15_preview)
   @doc("Custom Conversational Summarization Task")
   CustomConversationalSummarizationTask: "CustomConversationalSummarizationTask",
 
-  @removed(Versions.v2024-05-01)
+  @removed(Versions.v2024_05_01)
   @added(Versions.v2023_04_15_preview)
   @doc("Conversational Sentiment Task")
   ConversationalSentimentTask: "ConversationalSentimentTask",
@@ -698,13 +696,13 @@ union AnalyzeConversationResultsKind {
   @doc("Conversational PII Results")
   ConversationalPIIResults: "ConversationalPIIResults",
 
-  @added(Versions.v2024-05-15-preview)
+  @added(Versions.v2024_05_15_preview)
   @removed(Versions.v2024_05_01)
   @added(Versions.v2023_04_15_preview)
   @doc("Custom Conversational Summarization Results")
   CustomConversationalSummarizationResults: "CustomConversationalSummarizationResults",
 
-  @removed(Versions.v2024-05-01)
+  @removed(Versions.v2024_05_01)
   @added(Versions.v2023_04_15_preview)
   @doc("Conversational Sentiment Results")
   ConversationalSentimentResults: "ConversationalSentimentResults",
@@ -918,6 +916,7 @@ model ConversationRequestStatistics is RequestStatistics {
 @added(Versions.v2023_04_01)
 model ConversationItemLevelTiming is AudioTiming;
 
+@removed(Versions.v2024_05_01)
 @added(Versions.v2023_04_15_preview)
 @doc("Task definition for conversational sentiment.")
 model AnalyzeConversationalSentimentTask extends AnalyzeConversationLROTask {
@@ -1143,7 +1142,7 @@ union TranscriptContentType {
   text: "text",
 }
 
-@added(Versions.v2024-05-15-preview)
+@added(Versions.v2024_05_15_preview)
 @removed(Versions.v2024_05_01)
 @added(Versions.v2023_04_15_preview)
 @doc("Task definition for custom conversational summarization.")
@@ -1180,8 +1179,6 @@ model ConversationSummarizationTaskParameters is PreBuiltTaskParameters {
   ...ConversationSummarizationTaskParametersBase;
 }
 
-@added(Versions.v2024_05_15_preview)
-@removed(Versions.v2024_05_01)
 @added(Versions.v2023_04_15_preview)
 @doc("Supported parameters for a custom conversation summarization task.")
 model CustomConversationSummarizationTaskParameters is CustomTaskParameters {
@@ -1209,7 +1206,7 @@ union SummaryAspect {
   @doc("A concise one-paragraph summary to provide a quick overview.")
   recap: "recap",
 
-  @added(Versions.v2024-05-15-preview)
+  @added(Versions.v2024_05_15_preview)
   @removed(Versions.v2024_05_01)
   @added(Versions.v2023_11_15_preview)
   @doc("Action items and tasks that arose during a meeting. ")
