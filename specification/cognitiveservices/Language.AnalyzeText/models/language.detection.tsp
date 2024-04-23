@@ -6,321 +6,320 @@ using TypeSpec.Versioning;
 
 namespace Language.AnalyzeText;
 
-@doc("Contains the language detection document analysis input.")
+/** Contains the language detection document analysis input. */
 model LanguageDetectionAnalysisInput {
-  @doc("List of documents to be analyzed.")
+  /** List of documents to be analyzed. */
   documents?: Array<LanguageInput>;
 }
 
-@doc("Contains the language detection document analysis task input.")
+/** Contains the language detection document analysis task input. */
 model AnalyzeTextLanguageDetectionInput extends AnalyzeTextTask {
-  @doc("Kind of the task.")
+  /** Kind of the task. */
   kind: AnalyzeTextTaskKind.LanguageDetection;
 
-  @doc("Documents to be analyzed.")
+  /** Documents to be analyzed. */
   analysisInput?: LanguageDetectionAnalysisInput;
 
-  @doc("task parameters.")
+  /** task parameters. */
   parameters?: LanguageDetectionTaskParameters;
 }
 
-@clientName("LanguageDetectionTaskContent", "csharp")
-@doc("Supported parameters for a Language Detection task.")
+/** Supported parameters for a Language Detection task. */
 model LanguageDetectionTaskParameters is PreBuiltTaskParameters;
 
-@doc("Contains the language detection task result for the request.")
+/** Contains the language detection task result for the request. */
 model LanguageDetectionTaskResult extends AnalyzeTextTaskResult {
-  @doc("Kind of the task result.")
+  /** Kind of the task result. */
   kind: AnalyzeTextTaskResultsKind.LanguageDetectionResults;
 
-  @doc("Contains the language detection results.")
+  /** Contains the language detection results. */
   results: LanguageDetectionResult;
 }
 
-@doc("Contains the language detection result for the request.")
+/** Contains the language detection result for the request. */
 model LanguageDetectionResult is PreBuiltResult {
-  @doc("Enumeration of language detection results for each input document.")
+  /** Enumeration of language detection results for each input document. */
   documents: Array<LanguageDetectionDocumentResult>;
 }
 
-@doc("Contains the language detection for a document.")
+/** Contains the language detection for a document. */
 model LanguageDetectionDocumentResult is DocumentResult {
-  @doc("Detected Language.")
+  /** Detected Language. */
   detectedLanguage: DetectedLanguage;
 }
 
-@doc("Contains the details of the detected language for the text.")
+/** Contains the details of the detected language for the text. */
 model DetectedLanguage {
-  @doc("Long name of a detected language (e.g. English, French).")
+  /** Long name of a detected language (e.g. English, French). */
   name: string;
 
-  @doc("A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr).")
+  /** A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr). */
   iso6391Name: string;
 
-  @doc("A confidence score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true.")
+  /** A confidence score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true. */
   confidenceScore: float64;
 
-  @added(Versions.v2023_04_15_preview)
-  @doc("Identifies the script of the input document.")
+  /** Identifies the script of the input document. */
+  @added(Versions.v2023_11_15_preview)
   script?: ScriptKind;
 
+  /** Identifies the script of the input document. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Identifies the script of the input document.")
   scriptCode?: ScriptCode;
 }
 
-@added(Versions.v2023_04_15_preview)
-@doc("Identifies the script of the input document. Maps to the ISO 15924 standard formal name.")
+/** Identifies the script of the input document. Maps to the ISO 15924 standard formal name. */
+@added(Versions.v2023_11_15_preview)
 union ScriptKind {
   string,
 
+  /** Script name for the Arabic script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Arabic script.")
   Arabic: "Arabic",
 
+  /** Script name for the Armenian script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Armenian script.")
   Armenian: "Armenian",
 
+  /** Script name for the Bangla script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Bangla script.")
   Bangla: "Bangla",
 
+  /** Script name for the UnifiedCanadianAboriginalSyllabics script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the UnifiedCanadianAboriginalSyllabics script.")
   UnifiedCanadianAboriginalSyllabics: "UnifiedCanadianAboriginalSyllabics",
 
+  /** Script name for the Cyrillic script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Cyrillic script.")
   Cyrillic: "Cyrillic",
 
+  /** Script name for the Devanagari script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Devanagari script.")
   Devanagari: "Devanagari",
 
+  /** Script name for the Ethiopic script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Ethiopic script.")
   Ethiopic: "Ethiopic",
 
+  /** Script name for the Georgian script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Georgian script.")
   Georgian: "Georgian",
 
+  /** Script name for the Greek script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Greek script.")
   Greek: "Greek",
 
+  /** Script name for the Gujarati script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Gujarati script.")
   Gujarati: "Gujarati",
 
+  /** Script name for the Gurmukhi script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Gurmukhi script.")
   Gurmukhi: "Gurmukhi",
 
+  /** Script name for the Hangul script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Hangul script.")
   Hangul: "Hangul",
 
+  /** Script name for the HanSimplified script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the HanSimplified script.")
   HanSimplified: "HanSimplified",
 
+  /** Script name for the HanTraditional script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the HanTraditional script.")
   HanTraditional: "HanTraditional",
 
+  /** Script name for the Hebrew script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Hebrew script.")
   Hebrew: "Hebrew",
 
+  /** Script name for the Japanese script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Japanese script.")
   Japanese: "Japanese",
 
+  /** Script name for the Khmer script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Khmer script.")
   Khmer: "Khmer",
 
+  /** Script name for the Kannada script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Kannada script.")
   Kannada: "Kannada",
 
+  /** Script name for the Lao script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Lao script.")
   Lao: "Lao",
 
-  @added(Versions.v2023_04_15_preview)
-  @doc("Script name for the Latin script.")
+  /** Script name for the Latin script. */
+  @added(Versions.v2023_11_15_preview)
   Latin: "Latin",
 
+  /** Script name for the Malayalam script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Malayalam script.")
   Malayalam: "Malayalam",
 
+  /** Script name for the Myanmar script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Myanmar script.")
   Myanmar: "Myanmar",
 
+  /** Script name for the Odia script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Odia script.")
   Odia: "Odia",
 
+  /** Script name for the Sinhala script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Sinhala script.")
   Sinhala: "Sinhala",
 
+  /** Script name for the Tamil script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Tamil script.")
   Tamil: "Tamil",
 
+  /** Script name for the Telugu script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Telugu script.")
   Telugu: "Telugu",
 
+  /** Script name for the Thaana script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Thaana script.")
   Thaana: "Thaana",
 
+  /** Script name for the Thai script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Thai script.")
   Thai: "Thai",
 
+  /** Script name for the Tibetan script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script name for the Tibetan script.")
   Tibetan: "Tibetan",
 }
 
+/** Identifies the script of the input document. Maps to the ISO 15924 standard script code. */
 @added(Versions.v2023_11_15_preview)
-@doc("Identifies the script of the input document. Maps to the ISO 15924 standard script code.")
 union ScriptCode {
   string,
 
+  /** Script code for the Arabic script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Arabic script.")
   Arab: "Arab",
 
+  /** Script code for the Armenian script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Armenian script.")
   Armn: "Armn",
 
+  /** Script code for the Bangla script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Bangla script.")
   Beng: "Beng",
 
+  /** Script code for the UnifiedCanadianAboriginalSyllabics script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the UnifiedCanadianAboriginalSyllabics script.")
   Cans: "Cans",
 
+  /** Script code for the Cyrillic script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Cyrillic script.")
   Cyrl: "Cyrl",
 
+  /** Script code for the Devanagari script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Devanagari script.")
   Deva: "Deva",
 
+  /** Script code for the Ethiopic script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Ethiopic script.")
   Ethi: "Ethi",
 
+  /** Script code for the Georgian script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Georgian script.")
   Geor: "Geor",
 
+  /** Script code for the Greek script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Greek script.")
   Grek: "Grek",
 
+  /** Script code for the Gujarati script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Gujarati script.")
   Gujr: "Gujr",
 
+  /** Script code for the Gurmukhi script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Gurmukhi script.")
   Guru: "Guru",
 
+  /** Script code for the Hangul script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Hangul script.")
   Hang: "Hang",
 
+  /** Script code for the HanSimplified script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the HanSimplified script.")
   Hans: "Hans",
 
+  /** Script code for the HanTraditional script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the HanTraditional script.")
   Hant: "Hant",
 
+  /** Script code for the Hebrew script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Hebrew script.")
   Hebr: "Hebr",
 
+  /** Script code for the Japanese script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Japanese script.")
   Jpan: "Jpan",
 
+  /** Script code for the Khmer script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Khmer script.")
   Khmr: "Khmr",
 
+  /** Script code for the Kannada script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Kannada script.")
   Knda: "Knda",
 
+  /** Script code for the Lao script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Lao script.")
   Laoo: "Laoo",
 
-  @added(Versions.v2023_04_15_preview)
-  @doc("Script code for the Latin script.")
+  /** Script code for the Latin script. */
+  @added(Versions.v2023_11_15_preview)
   Latn: "Latn",
 
+  /** Script code for the Malayalam script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Malayalam script.")
   Mlym: "Mlym",
 
+  /** Script code for the Myanmar script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Myanmar script.")
   Mymr: "Mymr",
 
+  /** Script code for the Odia script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Odia script.")
   Orya: "Orya",
 
+  /** Script code for the Sinhala script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Sinhala script.")
   Sinh: "Sinh",
 
+  /** Script code for the Tamil script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Tamil script.")
   Taml: "Taml",
 
+  /** Script code for the Telugu script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Telugu script.")
   Telu: "Telu",
 
+  /** Script code for the Thaana script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Thaana script.")
   Thaa: "Thaa",
 
+  /** Script code for the Thai script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Thai script.")
   Thai: "Thai",
 
+  /** Script code for the Tibetan script. */
   @added(Versions.v2023_11_15_preview)
-  @doc("Script code for the Tibetan script.")
   Tibt: "Tibt",
 }
 
-@doc("Contains the language detection input.")
+/** Contains the language detection input. */
 model LanguageInput {
-  @doc("A unique, non-empty document identifier.")
+  /** A unique, non-empty document identifier. */
   id: string;
 
-  @doc("The input text to process.")
+  /** The input text to process. */
   text: string;
 
-  @doc("The country hint to help with language detection of the text.")
+  /** The country hint to help with language detection of the text. */
   countryHint?: string;
 }

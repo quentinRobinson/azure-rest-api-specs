@@ -2,8 +2,6 @@ import "@typespec/rest";
 import "@typespec/http";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
-import "@azure-tools/typespec-client-generator-core";
-import "./common.tsp";
 import "./models/common.models.tsp";
 import "./models/custom.text.tsp";
 import "./models/entity.linking.tsp";
@@ -21,16 +19,14 @@ using TypeSpec.Rest;
 using TypeSpec.Versioning;
 using Azure.Core;
 using Azure.Core.Traits;
-using Azure.ClientGenerator.Core;
-// using Autorest;
 
+/** The language service API is a suite of natural language processing (NLP) skills built with best-in-class Microsoft machine learning algorithms.  The API can be used to analyze unstructured text for tasks such as sentiment analysis, key phrase extraction, language detection and question answering. Further documentation can be found in <a href=\"https://docs.microsoft.com/azure/cognitive-services/language-service/overview\">https://docs.microsoft.com/azure/cognitive-services/language-service/overview</a>.0 */
 @useAuth(
   TypeSpec.Http.ApiKeyAuth<
     TypeSpec.Http.ApiKeyLocation.header,
     "Ocp-Apim-Subscription-Key"
   >
 )
-@doc("The language service API is a suite of natural language processing (NLP) skills built with best-in-class Microsoft machine learning algorithms.  The API can be used to analyze unstructured text for tasks such as sentiment analysis, key phrase extraction, language detection and question answering. Further documentation can be found in <a href=\"https://docs.microsoft.com/azure/cognitive-services/language-service/overview\">https://docs.microsoft.com/azure/cognitive-services/language-service/overview</a>.0")
 @service({
   title: "Microsoft Cognitive Language Service - Text Analysis",
 })
@@ -38,28 +34,24 @@ using Azure.ClientGenerator.Core;
   "{Endpoint}/language",
   "Single server endpoint",
   {
-    @doc("Supported Cognitive Services endpoint (e.g., https://<resource-name>.api.cognitiveservices.azure.com).")
+    /** Supported Cognitive Services endpoint (e.g., https://<resource-name>.api.cognitiveservices.azure.com). */
     Endpoint: string,
   }
 )
 @versioned(Versions)
 namespace Language.AnalyzeText;
 
-@doc("Analyze Conversations Service Versions")
+/** Analyze Conversations Service Versions */
 enum Versions {
-  @doc("Version 2022-05-01")
+  /** Version 2022-05-01 */
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   v2022_05_01: "2022-05-01",
 
-  @doc("Version 2023-04-01")
+  /** Version 2023-04-01 */
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   v2023_04_01: "2023-04-01",
 
-  @doc("Version 2023-04-15-preview")
-  @useDependency(Azure.Core.Versions.v1_0_Preview_2)
-  v2023_04_15_preview: "2023-04-15-preview",
-
-  @doc("Version 2023-11-15-preview")
+  /** Version 2023-11-15-preview */
   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
   v2023_11_15_preview: "2023-11-15-preview",
 }
@@ -68,41 +60,51 @@ alias ServiceTraits = NoRepeatableRequests &
   NoConditionalRequests &
   NoClientRequestId;
 
-alias Operations = Azure.Core.ResourceOperations<ServiceTraits>;
+alias languageOperations = ResourceOperations<ServiceTraits, ErrorResponse>;
 
+/** Request text analysis over a collection of documents. */
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
 @post
 @route("/:analyze-text")
-@doc("Request text analysis over a collection of documents.")
-op analyzeText(
-  @doc("Collection of documents to analyze and a single task to execute.")
-  @body
-  body: AnalyzeTextTask,
+op analyzeText is RpcOperation<
+  AnalyzeTextTask & AnalyzeTextQueryParameters,
+  AnalyzeTextTaskResult,
+  {},
+  ErrorResponse
+>;
 
-  ...AnalyzeTextQueryParameters,
-): AnalyzeTextTaskResult | ErrorResponse;
-
+/** Get the status of an analysis job. A job can consist of one or more tasks. After all tasks succeed, the job transitions to the succeeded state and results are available for each task. */
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
-@doc("Get the status of an analysis job. A job can consist of one or more tasks. After all tasks succeed, the job transitions to the succeeded state and results are available for each task.")
 @summary("Get analysis status and results")
-op analyzeTextJobStatus is LanguageLongRunningResourceRead<
+op analyzeTextJobStatus is languageOperations.ResourceRead<
   AnalyzeTextJobState,
   AnalyzeTextJobQueryParameters
 >;
 
+/** Submit a collection of text documents for analysis. Specify one or more unique tasks to be executed as a long-running operation. */
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
-@doc("Submit a collection of text documents for analysis. Specify one or more unique tasks to be executed as a long-running operation.")
 @route("/analyze-text/jobs")
 @pollingOperation(analyzeTextJobStatus)
-op analyzeTextSubmitJob is LanguageLongRunningOperation<
+op analyzeTextSubmitJob is Foundations.LongRunningOperation<
   AnalyzeTextJobsInput,
-  AnalyzeTextJobState
+  AcceptedResponse,
+  {},
+  ErrorResponse
 >;
 
+/** Cancel a long-running Text Analysis job. */
 #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
-@doc("Cancel a long-running Text Analysis job.")
 @summary("Cancel a long-running Text Analysis job.")
 @pollingOperation(analyzeTextJobStatus)
-@actionSeparator(":")
-@action("cancel")
-op analyzeTextCancelJob is LanguageLongRunningResourceCancel<AnalyzeTextJobState>;
+@route("/analyze-text/jobs/{jobId}:cancel")
+@post
+op analyzeTextCancelJob is Foundations.LongRunningOperation<
+  {
+    /** The job ID to cancel. */
+    @path
+    jobId: uuid;
+  },
+  AcceptedResponse,
+  {},
+  ErrorResponse
+>;

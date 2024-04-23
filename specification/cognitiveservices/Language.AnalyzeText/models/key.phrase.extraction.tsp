@@ -18,7 +18,6 @@ model AnalyzeTextKeyPhraseExtractionInput extends AnalyzeTextTask {
   parameters?: KeyPhraseTaskParameters;
 }
 
-@clientName("KeyPhraseTaskContent", "csharp")
 @doc("Supported parameters for a Key Phrase Extraction task.")
 model KeyPhraseTaskParameters is PreBuiltTaskParameters;
 
@@ -45,7 +44,7 @@ model KeyPhraseTaskResult extends AnalyzeTextTaskResult {
 model KeyPhraseResult is PreBuiltResult {
   @doc("Response by document")
   @typeChangedFrom(
-    Versions.v2023_04_15_preview,
+    Versions.v2023_11_15_preview,
     Array<KeyPhrasesDocumentResult>
   )
   documents: Array<KeyPhrasesDocumentResultWithDetectedLanguage>;
