@@ -381,7 +381,7 @@ model RegexKey extends BaseExtraInformation {
   regexPattern?: string;
 }
 
-@doc("Tags express similarities between entity categories for the extracted entity type.")
+/** Tags express similarities between entity categories for the extracted entity type. */
 @added(Versions.v2024_05_15_preview)
 model EntityTag {
   @doc("The name of the tag.")
@@ -392,6 +392,7 @@ model EntityTag {
 }
 
 @doc("The abstract base class for entity resolutions.")
+
 /** The abstract base class for entity resolutions. */
 @discriminator("resolutionKind")
 model BaseResolution {
@@ -1135,6 +1136,7 @@ union SummaryAspect {
 
   /** Action items and tasks that arose during a meeting. */
   @added(Versions.v2024_05_15_preview)
+
   followUpTasks: "follow-up tasks",
 }
 
