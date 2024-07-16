@@ -631,7 +631,7 @@ namespace Language.AnalyzeTextClientCustomizations;
 
 
 
-@@clientName(AnalyzeTextTaskResult, "AnalyzeTextResult", "csharp");
+// @@clientName(AnalyzeTextTaskResult, "AnalyzeTextResult", "csharp");
 @@clientName(AnalyzeTextTaskResultsKind, "AnalyzeTextResultsKind", "csharp");
 
 @@clientName(SentimentTaskResult, "SentimentResult", "csharp");
