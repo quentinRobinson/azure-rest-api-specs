@@ -26,3 +26,4 @@ options:
     package-mode: "dataplane"
     package-dir: "cognitivelanguage"
     package-name: "azure-ai-language-analyzetext"
+    flavor: azure

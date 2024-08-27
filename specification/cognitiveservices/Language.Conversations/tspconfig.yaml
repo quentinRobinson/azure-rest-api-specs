@@ -24,3 +24,4 @@ options:
     package-mode: "dataplane"
     package-dir: "cognitivelanguage"
     package-name: "azure-ai-language-conversations"
+    flavor: azure
