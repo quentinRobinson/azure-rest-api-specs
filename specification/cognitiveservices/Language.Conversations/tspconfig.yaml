@@ -22,5 +22,5 @@ options:
     flavor: azure
   "@azure-tools/typespec-python":
     package-mode: "dataplane"
-    package-dir: "azure-ai-language-conversations"
+    package-dir: "cognitivelanguage"
     package-name: "azure-ai-language-conversations"
