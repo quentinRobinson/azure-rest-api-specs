@@ -3,6 +3,7 @@ parameters:
     default: "sdk/textanalytics"
 emit:
   - "@azure-tools/typespec-autorest"
+  - "@azure-tools/typespec-python"
 linter:
   extends:
     - "@azure-tools/typespec-azure-rulesets/data-plane"
@@ -21,3 +22,7 @@ options:
     namespace: "Azure.AI.Language.Text"
     flavor: azure
     generate-protocol-methods: true
+  "@azure-tools/typespec-python":
+    package-mode: "dataplane"
+    package-dir: "azure-ai-language-analyzetext"
+    package-name: "azure-ai-language-analyzetext"
