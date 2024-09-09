@@ -1136,7 +1136,7 @@ namespace Language.AnalyzeTextClientCustomizations;
   "HR_PERSONAL_IDENTIFICATION_NUMBER_V2",
   "python"
 );
-@@clientName(PiiCategoriesExclude.CYIdentityCard, "CY_IDENTITY_CARDCyIdentityCard", "python");
+@@clientName(PiiCategoriesExclude.CYIdentityCard, "CY_IDENTITY_CARD", "python");
 @@clientName(PiiCategoriesExclude.CYTaxIdentificationNumber,
   "CY_TAX_IDENTIFICATION_NUMBER",
   "python"
@@ -1286,7 +1286,7 @@ namespace Language.AnalyzeTextClientCustomizations;
   "python"
 );
 @@clientName(PiiCategoriesExclude.IEPersonalPublicServiceNumberV2,
-  "IE_PERSONAL_PUBLIC_SERVICE_NUMBER_V2IePersonalPublicServiceNumberV2",
+  "IE_PERSONAL_PUBLIC_SERVICE_NUMBER_V2",
   "python"
 );
 @@clientName(PiiCategoriesExclude.ILBankAccountNumber,
@@ -1359,7 +1359,7 @@ namespace Language.AnalyzeTextClientCustomizations;
   "python"
 );
 @@clientName(PiiCategoriesExclude.NLCitizensServiceNumberV2,
-  "NL_CITIZENS_SERVICE_NUMBER_V2NlCitizensServiceNumberV2",
+  "NL_CITIZENS_SERVICE_NUMBER_V2",
   "python"
 );
 @@clientName(PiiCategoriesExclude.NLTaxIdentificationNumber,
